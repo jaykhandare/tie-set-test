@@ -125,12 +125,12 @@ class Report():
                 json.dump(data_as_dict, outfile)
 
 
-# executioner = ExecuteAlgorithm("demo")
-# for i in range(10):
-#     print("training run : {}".format(i+1), " time now: " , datetime.now().time())
-#     executioner.train_algorithm(learning_rate=0.01)
-#     print("testing run : {}".format(i+1), " time now: " , datetime.now().time())
-#     executioner.test_algorithm()
+executioner = ExecuteAlgorithm("demo")
+for i in range(10):
+    print("training run : {}".format(i+1), " time now: " , datetime.now().time())
+    executioner.train_algorithm(learning_rate=0.01)
+    print("testing run : {}".format(i+1), " time now: " , datetime.now().time())
+    executioner.test_algorithm()
 
 reporter = Report()
 reporter.get_all_projects()
