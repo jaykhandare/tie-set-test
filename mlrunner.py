@@ -27,7 +27,8 @@ def train(project_name, script, learning_rate, dataset):
         executioner.train_algorithm(learning_rate=learning_rate)
 
     except ImportError as err:
-        print("no module exists ar {}".format(script))
+        print("no module exists at {}".format(script))
+        print(err)
 
 
 @click.command()
@@ -49,7 +50,8 @@ def test(project_name, script, dataset):
         executioner.test_algorithm()
 
     except ImportError as err:
-        print("no module exists ar {}".format(script))
+        print("no module exists at {}".format(script))
+        print(err)
 
 
 @click.command()

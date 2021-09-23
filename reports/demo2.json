@@ -1,0 +1,11 @@
+[
+    {
+        "project_name": "demo2",
+        "run_id": "demo2_1632431624",
+        "training_start_time": "2021-09-24 02:43:44.921810",
+        "training_time": "60.7756381034851",
+        "testing_start_time": "2021-09-24 02:45:11.802387",
+        "testing_time": "0.581847429275513",
+        "accuracy": 90
+    }
+]
