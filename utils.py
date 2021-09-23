@@ -4,7 +4,7 @@ import sqlite3
 from sqlite3.dbapi2 import Row
 
 
-class Sql_database():
+class SQL_queries():
     def __init__(self):
         if path.exists("reports.db"):
             return
@@ -73,6 +73,9 @@ class Sql_database():
                        {"PRJ_NAME": project_name, "ZERO": 0})
         entry = cursor.fetchone()
         conn.close()
+        if entry is None:
+            print("all trained models are tested")
+            exit()
         return entry[1]
 
     def retrieve_data_for_project(self, project_name):
@@ -96,7 +99,7 @@ class Sql_database():
         entries = cursor.fetchall()
 
         entries_as_list_of_dict = [{k.lower(): item[k] for k in item.keys()}
-                           for item in entries]
+                                   for item in entries]
 
         conn.close()
         return entries_as_list_of_dict
