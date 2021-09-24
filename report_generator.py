@@ -1,6 +1,9 @@
-from utils import SQL_queries
 import json
 
+from utils import SQL_queries
+
+
+# this class is implemented to generate project specific reports to be displayed on django-ui
 class Report():
     def __init__(self):
         self.report_save_path = "./reports/"

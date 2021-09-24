@@ -1,15 +1,15 @@
+import sqlite3
 from datetime import datetime
 from os import path
-import sqlite3
-from sqlite3.dbapi2 import Row
 
 
 class SQL_queries():
     def __init__(self):
+        # return if database already exists
         if path.exists("reports.db"):
             return
-        # Opens Connection to SQLite database file.
         conn = sqlite3.connect("reports.db")
+        # create table for storing reports
         conn.execute('''CREATE TABLE REPORT
                     (
                     PROJECT_NAME            TEXT NOT NULL,
@@ -20,8 +20,8 @@ class SQL_queries():
                     TESTING_TIME            TEXT,
                     ACCURACY                INTEGER,
                     UNIQUE(RUN_ID) 
-                    );''')  # Creates the table
-        conn.commit()  # Commits the entries to the database
+                    );''')
+        conn.commit()
         conn.close()
 
     def add_entry(self, project_name, run_id, training_time_start, training_time, testing_time_start=0, testing_time=0, accuracy=0):
@@ -31,6 +31,7 @@ class SQL_queries():
 
         conn = sqlite3.connect('reports.db')
         cursor = conn.cursor()
+        # database query for inserting row of data into table
         params = (project_name, run_id, datetime.fromtimestamp(
             training_time_start), training_time, testing_time_start, testing_time, accuracy)
         cursor.execute("INSERT INTO REPORT VALUES (?,?,?,?,?,?,?)", params)
@@ -44,6 +45,8 @@ class SQL_queries():
 
         conn = sqlite3.connect('reports.db')
         cursor = conn.cursor()
+
+        # database query for updating row of data from/into table
         cursor.execute('''UPDATE REPORT 
                         SET 
                         TESTING_START_TIME =:TESTING_START_TIME, 
@@ -60,6 +63,8 @@ class SQL_queries():
     def retrieve_entry(self, run_id):
         conn = sqlite3.connect('reports.db')
         cursor = conn.cursor()
+
+        # database query for retrieving data of specific run from table
         cursor.execute(
             "SELECT * FROM REPORT WHERE RUN_ID =:RUN_ID", {"RUN_ID": run_id})
         entry = cursor.fetchone()
@@ -69,6 +74,8 @@ class SQL_queries():
     def retrieve_incomplete_entry_run_id(self, project_name):
         conn = sqlite3.connect('reports.db')
         cursor = conn.cursor()
+
+        # database query for retrieving incomplete data row to be updated later
         cursor.execute("SELECT * FROM REPORT WHERE PROJECT_NAME =:PRJ_NAME AND TESTING_TIME=:ZERO",
                        {"PRJ_NAME": project_name, "ZERO": 0})
         entry = cursor.fetchone()
@@ -79,6 +86,7 @@ class SQL_queries():
         return entry[1]
 
     def retrieve_data_for_project(self, project_name):
+        # database query for retrieving data for a project
         query = "SELECT * FROM REPORT WHERE PROJECT_NAME = '{}'".format(
             project_name)
         return self.sql_data_to_list_of_dicts(query)
@@ -86,11 +94,13 @@ class SQL_queries():
     def retrieve_project_names_and_run_ids(self):
         conn = sqlite3.connect('reports.db')
         cursor = conn.cursor()
+        # database query for retrieving data(PROJECT_NAME, RUN_ID)
         cursor.execute("SELECT PROJECT_NAME, RUN_ID FROM REPORT")
         entries = cursor.fetchall()
         conn.close()
         return entries
 
+    # this function converts sql data to a list of dicts to be used in a Pythonic way
     def sql_data_to_list_of_dicts(self, query):
         conn = sqlite3.connect('reports.db')
         conn.row_factory = sqlite3.Row
