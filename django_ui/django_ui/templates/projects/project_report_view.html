@@ -1,0 +1,103 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Project Report {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+	<div class="content">
+		<div class="page-inner">
+			<div class="row">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">
+							{% if msg %}
+								<span class="text-danger">{{ msg | safe }}</span>
+							{% elif not data %}
+								<div class="page-category">
+									<h2>Empty table</h2>
+									<h3 class="font-weight-light">
+										There is no data to be displayed.
+									</h3>
+								</div>
+							{% else %}
+								<span>
+									Table
+								</span>
+							{% endif %}
+						</div>
+					</div>
+					{% if data %}
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="display table table-striped table-hover">
+									<thead>
+										<tr>
+											{% for header in headers %}
+												<th scope="col">{{ header }}</th>
+											{% endfor %}
+										</tr>
+									</thead>
+									<tbody>
+										{% for entry in data %}
+											<tr>
+												<td>{{entry.run_id}}</td>
+												<td>{{entry.training_start_time}}</td>
+												<td>{{entry.training_time}}</td>
+												<td>{{entry.testing_start_time}}</td>
+												<td>{{entry.testing_time}}</td>
+												<td>{{entry.accuracy}}</td>
+												<td>
+													<div class="form-button-action">
+														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
+															<a href="{% url 'view_loss_graph_for_run'%}?run_id={{entry.run_id}}"> <i class="fa fa-envelope-square"></i> </a>
+														</button>
+													</div>
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<script>
+		$('#displayNotif').on('click', function(){
+			var placementFrom = $('#notify_placement_from option:selected').val();
+			var placementAlign = $('#notify_placement_align option:selected').val();
+			var state = $('#notify_state option:selected').val();
+			var style = $('#notify_style option:selected').val();
+			var content = {};
+
+			content.message = 'Turning standard Bootstrap alerts into "notify" like notifications';
+			content.title = 'Bootstrap notify';
+			if (style == "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+			});
+		});
+	</script>
+	
+{% endblock javascripts %}

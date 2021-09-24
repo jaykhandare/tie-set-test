@@ -121,7 +121,15 @@ class ExecuteAlgorithm():
 """ code for testing these classes separately """
 # from datetime import datetime
 # executioner = ExecuteAlgorithm("demo")
-# for i in range(10):
+# for i in range(2):
+#     print("training run : {}".format(i+1),
+#           " time now: ", datetime.now().time())
+#     executioner.train_algorithm(learning_rate=0.01)
+#     print("testing run : {}".format(i+1), " time now: ", datetime.now().time())
+#     executioner.test_algorithm()
+
+# executioner = ExecuteAlgorithm("demo2")
+# for i in range(2):
 #     print("training run : {}".format(i+1),
 #           " time now: ", datetime.now().time())
 #     executioner.train_algorithm(learning_rate=0.01)

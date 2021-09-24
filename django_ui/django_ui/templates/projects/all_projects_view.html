@@ -1,0 +1,45 @@
+ {% extends "layouts/base.html" %}
+
+{% block title %} Projects {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">All Projects</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"> tie-set interview demo  </div>
+                    </div>
+
+                    {% if data %}
+                        {% for proj_name in data %}
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group form-inline">
+                                    <label for="inlineinput" class="col-md-3 col-form-label">{{proj_name}}</label>
+                                    <div class="col-md-9 p-0">
+                                        <div class="form-button-action">
+                                            <button type="button" data-toggle="tooltip" title="" class="btn btn-link" data-original-title="View">
+                                                <a href="{% url 'project_view'%}?project_name={{proj_name}}"> <i class="fa fa-envelope-square"></i> </a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

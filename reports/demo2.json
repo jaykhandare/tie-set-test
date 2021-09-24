@@ -1,11 +1,20 @@
 [
     {
         "project_name": "demo2",
-        "run_id": "demo2_1632431624",
-        "training_start_time": "2021-09-24 02:43:44.921810",
-        "training_time": "60.7756381034851",
-        "testing_start_time": "2021-09-24 02:45:11.802387",
-        "testing_time": "0.581847429275513",
+        "run_id": "demo2_1632473473",
+        "training_start_time": "2021-09-24 14:21:13.812772",
+        "training_time": "59.2490804195404",
+        "testing_start_time": "2021-09-24 14:22:13.073908",
+        "testing_time": "0.610740661621094",
+        "accuracy": 90
+    },
+    {
+        "project_name": "demo2",
+        "run_id": "demo2_1632473533",
+        "training_start_time": "2021-09-24 14:22:13.699993",
+        "training_time": "58.4204335212708",
+        "testing_start_time": "2021-09-24 14:23:12.132698",
+        "testing_time": "0.601889848709106",
         "accuracy": 90
     }
 ]

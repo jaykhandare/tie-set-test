@@ -10,14 +10,17 @@ class Report():
         projects = self.db_object.retrieve_project_names_and_run_ids()
         return projects
 
-    def generate_report(self, project_name, output_path="./reports", format="json"):
+    def generate_report(self, project_name, output_path=None, format="json"):
         if format == "json":
             data_as_dict = self.db_object.retrieve_data_for_project(
                 project_name)
-            with open(self.report_save_path + "{}.json".format(project_name), "w") as outfile:
+            if output_path is None:
+                output_path = self.report_save_path
+            with open(output_path + "{}.json".format(project_name), "w") as outfile:
                 json.dump(data_as_dict, outfile)
 
 
 """code for testing this classes separately"""
-reporter = Report()
-reporter.generate_report(reporter.get_all_projects()[0][0])
+# reporter = Report()
+# reporter.generate_report(reporter.get_all_projects()[0][0])
+# reporter.generate_report(reporter.get_all_projects()[2][0])
