@@ -16,4 +16,3 @@ For Integration:
 With the ML algorithm having been implemented, I started to get on collecting and formatting data to be shown on the django-ui. The main data-points to consider were "training time", "testing time", and "change in loss values". I modified the ML code, to access these points and store them in a sql database and csv files. These files and values from the database were later retrieved in the django libraries to be formatted and displayed using the "plotly" library.
 
 Actually, I took more time for these tasks than I anticipated. Hence, I was not able to start on the unit-tests. I have included mini-tests in the ML algorithm module to verify that the data is being generated.
-

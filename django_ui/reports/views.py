@@ -1,21 +1,17 @@
-from django.shortcuts import render
-from django_ui.template_declarations import *
-
+import csv
+import json
 import os
 import os.path
-import json
-import csv
 from math import floor
 
-from plotly.offline import plot
+from django.shortcuts import render
+from django_ui.template_declarations import *
 from plotly.graph_objs import Scatter
-
+from plotly.offline import plot
 
 base_project_dir = "./"
 report_dir_location = base_project_dir + "reports/"
 loss_dir_location = base_project_dir + "loss_files/"
-
-# Create your views here.
 
 
 def all_projects(request):
@@ -38,7 +34,6 @@ def project_view(request):
 
         with open(json_file_path, "r") as f:
             data = json.load(f)
-        # print(data)
         headers = ["run_id", "training_start_time", "training_time",
                    "testing_start_time", "testing_time", "accuracy", "loss_graph"]
         return render(request, PROJECT_REPORT, {"data": data, "headers": headers})
@@ -58,8 +53,9 @@ def view_loss_graph_for_run(request):
         with open(loss_file_path, "r") as file:
             csv_reader = csv.reader(file)
             data_for_loss_graph = list(csv_reader)[0]
-        
-        data_for_loss_graph = [ floor(float(entry) * 100) for entry in data_for_loss_graph]
+
+        data_for_loss_graph = [floor(float(entry) * 100)
+                               for entry in data_for_loss_graph]
 
         points_for_x = [x+1 for x in range(len(data_for_loss_graph))]
 
@@ -67,11 +63,12 @@ def view_loss_graph_for_run(request):
             'title': run_id,
             'xaxis_title': 'Epochs',
             'yaxis_title': 'Loss function values in percentage',
-            'height' : 720,
-            'width' : 1080,
+            'height': 720,
+            'width': 1080,
         }
 
-        graph = [Scatter(x=points_for_x, y=data_for_loss_graph, mode='lines+markers', name=run_id)]
+        graph = [Scatter(x=points_for_x, y=data_for_loss_graph,
+                         mode='lines+markers', name=run_id)]
         plot_div = plot({'data': graph, 'layout': layout}, output_type='div')
 
         return render(request, LOSS_GRAPH_VIEW, {'plot_div': plot_div})
