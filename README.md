@@ -22,4 +22,11 @@ steps to run the project
     
     pip3 install torch==1.5.0+cpu torchvision==0.6.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
-3. run the code.
+3. run the code[example provided below]
+    python3 mlrunner.py train --project_name demo1 --learning_rate 0.01 --dataset ../data/MNIST/processed/training.pt --script ml_algo_module
+    python3 mlrunner.py test --project_name demo1 --dataset data/MNIST/processed/testing.pt --script ml_algo_module
+    python3 mlrunner.py report --project_name demo2
+    python3 django_ui/manage.py runserver
+
+4. open following link in your web-browser of choice.
+        http://127.0.0.1:8000/all_projects/
