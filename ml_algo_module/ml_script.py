@@ -36,7 +36,7 @@ class ExecuteAlgorithm():
         self.db_object = SQL_queries()
 
 
-    def train_algorithm(self, learning_rate, dataset="../data", epochs=15):
+    def train_algorithm(self, learning_rate, dataset="../data", epochs=100):
         print("training started for project {}".format(self.project_name))
         train_dataset = dsets.MNIST(
             root=dataset, train=True, transform=transforms.ToTensor(), download=True)
