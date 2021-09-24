@@ -2,6 +2,9 @@
 
 Coding assignment for the interview with tie-set.com
 
+Problem statement and notes are put at https://github.com/jaykhandare/tie-set-test/tree/main/problem_statement_docs
+
+
 
 **Steps to run the project**
 
@@ -43,4 +46,12 @@ Coding assignment for the interview with tie-set.com
     http://127.0.0.1:8000/all_projects/
 
 
-OR you can simply run the sample_run.sh file with command { ./sample_run } in your bash shell and open the above link in your browser.
+OR 
+
+You can simply run the sample_run.sh file with  following command in your bash shell and open the above link in your browser.
+
+```
+./sample_run.sh
+```
+
+
