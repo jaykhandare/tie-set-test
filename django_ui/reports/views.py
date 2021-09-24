@@ -11,7 +11,7 @@ from plotly.offline import plot
 from plotly.graph_objs import Scatter
 
 
-base_project_dir = "../"
+base_project_dir = "./"
 report_dir_location = base_project_dir + "reports/"
 loss_dir_location = base_project_dir + "loss_files/"
 
@@ -82,13 +82,7 @@ def view_loss_graph_for_run(request):
 def retrieve_all_projects():
     print("reports being retrieved...")
     # retrieve file data from report_dir_location and send curated data back
+    print(os.listdir("."))
     file_list = os.listdir(report_dir_location)
     print("project names retrieved: ", file_list)
     return file_list
-
-
-def retrieve_loss_value_files_for_project(project_name):
-    base_project_dir = "../"
-
-    # return loss values for generating graph for each run from loss_dir_location
-    pass
