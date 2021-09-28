@@ -1,0 +1,90 @@
+Assignment details
+------------------------
+- 3 major parts
+	- ML algorithm
+	- data collection and visualisation
+	- display with Django UI
+- should have a simple CLI
+- UI should have graphs and project/run details
+- use Pytorch
+
+=====================================================================================================================================================================
+
+Deliverables
+---------------
+- functional code
+- documentation on implementation
+- documentation on usage in Ubuntu 20.04 
+
+=====================================================================================================================================================================
+
+Approach
+------------
+- divided the assignment in 3 parts
+	- ML algorithm implementation
+	- Django UI creation
+	- Data collection, storage and integration
+
+- ML algorithm implementation
+	- code was provided with some obscurities
+	- had to break down the code in "train" and "test" modules
+	- had to develop a mechanism to store loss item values and run information in db
+	- loss item values stored in CSV and run information in sqlite3
+
+- Django UI creation
+	- basic UI with 4-5 views and error pages
+	- stored data from CSV was retrieved to create graphs using plotly library
+	- stored data from database was retrieved to fill in views
+
+- Integration
+	- click library was used to provide APIs to be run from command line
+	- includes train, test, generate report and django-ui run functionalities
+
+=====================================================================================================================================================================
+
+Things I would have done differently
+------------------------------------------
+- could have separated the db access and file storage functionalities from ML_algo_module
+	- the data for graph generation and report creation is stored from the ML_algo_module itself
+	- although this functionality is somewhat separated from the actual algorithm, it could have been transported into a different package altogether
+	- this would make the code even more modular than it is now
+
+- could have made the code portable on various devices(Linux/Windows/etc)
+	- adding some conditionals in the installation script for specific environment would have taken care of this part
+	- the program will run correctly on Ubuntu for now, but not at optimal capacity
+
+- could have added some unit-tests
+  - having added some basic tests to check functioning of some of the method, a lot more are required for smoother functioning later in the future
+
+- could have improved the django UI
+
+- could have added a lot more comments in the code
+  - the code has some comments in part where I felt it was important to mention the functionality
+  - the code won't be accessed and modified by me only, so some more comments would have been helpful
+  
+- could have created JSON reports on the fly instead of storing them
+	- the reason I chose my approach was because this is kind of a prototype development
+	- in prototype, we have to make many adjustments before the project goes live and having this data accessible is crucial
+	- also, the files could be used later for creating a logging mechanism which is always helpful in the long run
+	- but that also could have been done, when generating report method would have been called
+
+- could have made database design been better
+	- the database has only one table in it, which stores all the information
+	- this could have been divided into 2-3 tables which would make it more normalised
+	- when implementing this part, I tried to do it fast as I was running out of time, hence the mistake on my part
+	- also, having just one table makes it run faster as this is a prototype with less number of database queries
+	- as the system grows and architecture improves, this error would have to be addressed later
+
+- could have made the CLI design exactly as it was required
+	- there was a mismatch with the requirements and final deliverable
+	- creating a simple package of the whole package would have been sufficient 
+
+=====================================================================================================================================================================
+
+Final thoughts
+---------------------
+The problem statement was ambiguous and a lot of details were unclear.
+This took most of my time, as I had to ask Vibhatha for clarification which would have been better utilised for a better design.
+Now looking back at it, I suppose that's how a system design problem should be formulated.
+
+=====================================================================================================================================================================
