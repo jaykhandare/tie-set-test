@@ -37,4 +37,6 @@ python3 mlrunner.py report --project_name demo2
 python3 mlrunner.py report --project_name demo1
 
 # running the django server
+python3 django_ui/manage.py makemigrations
+python3 django_ui/manage.py migrate
 python3 django_ui/manage.py runserver
