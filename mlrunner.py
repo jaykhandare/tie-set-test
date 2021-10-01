@@ -84,7 +84,7 @@ def report(project_name, format, output_path):
 # this method activates mechanism to start the django-ui for viewing the reports
 def start_django_ui():
     print("starting django ui...")
-    bash_command = "echo 'open http://127.0.0.1:8000/all_projects/ in your browser' && python3 django_ui/manage.py runserver"
+    bash_command = "echo 'open http://127.0.0.1:8000/all_projects/ in your browser' && python3 django_ui/manage.py makemigrations && python3 django_ui/manage.py migrate && python3 django_ui/manage.py runserver"
     system(bash_command)
 
 
