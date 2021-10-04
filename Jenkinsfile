@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                cd "workspace/test"
                 sh pwd
                 sh "sample_run.sh"
             }
